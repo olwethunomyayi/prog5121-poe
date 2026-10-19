@@ -1,3 +1,5 @@
+package com.iie.poe.prog5121;
+
 import java.util.regex.Pattern;
 
 public class Login {
@@ -17,6 +19,10 @@ public class Login {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
+   public Login() {
+    // Leave empty or initialize any default values if needed
+}
 
     /** Username must contain an underscore and be no more than 5 characters long. */
     public boolean checkUserName(String username) {

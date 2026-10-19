@@ -1,3 +1,6 @@
+package com.iie.poe.prog5121;
+
+import com.iie.poe.prog5121.Login;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
