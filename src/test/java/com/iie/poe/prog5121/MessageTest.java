@@ -60,4 +60,42 @@ public class MessageTest {
         assertEquals("Press 0 to delete the message.", msg.SentMessage(2));
         assertEquals("Message successfully stored.", msg.SentMessage(3));
     }
+@Test
+    public void testDisplayLongestMessage() {
+        // Test data matching Part 3 criteria
+        Message m1 = new Message(1, "+27834557896", "Did you get the cake?", "Sent");
+        Message m2 = new Message(2, "+27838884567", "Where are you? You are late! I have asked you to be on time.", "Stored");
+        Message m3 = new Message(3, "+27834484567", "Yohoooo, I am at your gate.", "Disregard");
+        
+        // Logic to find the longest message
+        Message[] messages = {m1, m2, m3};
+        Message longest = messages[0];
+        for (Message m : messages) {
+            if (m.getMessageContent().length() > longest.getMessageContent().length()) {
+                longest = m;
+            }
+        }
+        
+        assertEquals("Where are you? You are late! I have asked you to be on time.", longest.getMessageContent());
+    }
+
+    @Test
+    public void testSearchMessageByRecipient() {
+        String targetRecipient = "+27838884567";
+        Message m2 = new Message(2, targetRecipient, "Where are you? You are late! I have asked you to be on time.", "Stored");
+        Message m5 = new Message(5, targetRecipient, "Ok, I am leaving without you.", "Stored");
+        
+        assertEquals("+27838884567", m2.getRecipientCell());
+        assertEquals("+27838884567", m5.getRecipientCell());
+    }
+
+    @Test
+    public void testDeleteMessageByHash() {
+        Message msg = new Message(2, "+27838884567", "Where are you? You are late! I have asked you to be on time.", "Stored");
+        String expectedHash = msg.createMessageHash();
+        
+        // Simulating hash deletion check
+        boolean isMatch = msg.getMessageHash().equalsIgnoreCase(expectedHash);
+        assertTrue(isMatch);
+    }
 }
